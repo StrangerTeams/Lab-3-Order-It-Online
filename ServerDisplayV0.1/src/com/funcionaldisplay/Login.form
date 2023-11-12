@@ -387,13 +387,13 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="8">
                 <StringItem index="0" value="Ordenamiento Burbuja"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-                <StringItem index="4" value="ew"/>
-                <StringItem index="5" value="ewe"/>
-                <StringItem index="6" value="ppp"/>
-                <StringItem index="7" value="ooo"/>
+                <StringItem index="1" value="Ordenamiento Por Insercion"/>
+                <StringItem index="2" value="Ordenamiento Por Seleccion"/>
+                <StringItem index="3" value="Ordenamiento Heap Sort"/>
+                <StringItem index="4" value="Ordenamiento Quick Sort"/>
+                <StringItem index="5" value="Ordenamiento Shell Sort"/>
+                <StringItem index="6" value="Ordenamiento Radix Sort"/>
+                <StringItem index="7" value="Ordenamiento Mezcla Natural"/>
               </StringArray>
             </Property>
             <Property name="autoscrolls" type="boolean" value="true"/>

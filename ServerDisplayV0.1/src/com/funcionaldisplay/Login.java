@@ -5,6 +5,7 @@
 package com.funcionaldisplay;
 
 import java.awt.Color;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import javax.swing.BorderFactory;
@@ -309,7 +310,7 @@ public class Login extends javax.swing.JFrame {
         ordenamientoop.setFont(new java.awt.Font("Play", 1, 14)); // NOI18N
         ordenamientoop.setForeground(new java.awt.Color(20, 20, 20));
         ordenamientoop.setMaximumRowCount(8);
-        ordenamientoop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ordenamiento Burbuja", "Item 2", "Item 3", "Item 4", "ew", "ewe", "ppp", "ooo" }));
+        ordenamientoop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ordenamiento Burbuja", "Ordenamiento Por Insercion", "Ordenamiento Por Seleccion", "Ordenamiento Heap Sort", "Ordenamiento Quick Sort", "Ordenamiento Shell Sort", "Ordenamiento Radix Sort", "Ordenamiento Mezcla Natural" }));
         ordenamientoop.setAutoscrolls(true);
         ordenamientoop.setBorder(null);
         ordenamientoop.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -544,7 +545,7 @@ public class Login extends javax.swing.JFrame {
             usertxt.setText("");
 
         } else {
-            if(usertxt.getText().length()==1){
+            if (usertxt.getText().length() == 1) {
                 if (usertxt.getText().charAt(0) == ',') {
                     usertxt.setText("");
                 }
@@ -554,8 +555,64 @@ public class Login extends javax.swing.JFrame {
         }
 
         System.out.println("todo bien");
-        resultxt.setText("joa por fin "+usertxt.getText());
-        tminus.setText("!:______algo________:¡");
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
+        String tipoorden = ordenamientoop.getSelectedItem().toString();
+        String datovalidao = usertxt.getText();
+        String[] datos = datovalidao.split(",");
+        int[] datosint = new int[datos.length];
+        for (int i = 0; i < datos.length; i++) {
+            datosint[i] = Integer.parseInt(datos[i]);
+        }
+        for (int i = 0; i < datosint.length; i++) {
+            System.out.print(datosint[i]+",");
+        }
+
+
+        switch (tipoorden) {
+            case "Ordenamiento Burbuja":
+                long inicio = System.nanoTime();
+                resultxt.setText("ordenao por burbuja " + Arrays.toString(burbuja(datosint)));
+                // Registra el tiempo de finalización
+                long fin = System.nanoTime();
+                // Calcula y muestra el tiempo total de ejecución en milisegundos
+                double tiempoTotal =  (double) (fin - inicio) / 1_000_000_000;
+                tminus.setText("!:______{"+tiempoTotal+" Seg}______:¡");
+                break;
+            case "Ordenamiento Por Insercion":
+                resultxt.setText("ordenao por insercion " + Arrays.toString(insercion(datosint)));
+                tminus.setText("!:______algo________:¡");
+                break;
+            case "Ordenamiento Por Seleccion":
+                resultxt.setText("ordenao por seleccion " + Arrays.toString(seleccion(datosint)));
+                tminus.setText("!:______algo________:¡");
+                break;
+            case "Ordenamiento Heap Sort":
+                resultxt.setText("ordenao por heap sort " + Arrays.toString(heapSort(datosint)));
+                tminus.setText("!:______algo________:¡");
+                break;
+            case "Ordenamiento Quick Sort":
+                quickSort(datosint,0,datosint.length-1);
+                resultxt.setText("ordenao por quick sort " + Arrays.toString(datosint));
+                tminus.setText("!:______algo________:¡");
+                break;
+            case "Ordenamiento Shell Sort":
+                resultxt.setText("ordenao por shell sort " + Arrays.toString(shellSort(datosint)));
+                tminus.setText("!:______algo________:¡");
+                break;
+            case "Ordenamiento Radix Sort":
+                resultxt.setText("ordenao por radix sort " + Arrays.toString(radixSort(datosint)));
+                tminus.setText("!:______algo________:¡");
+                break;
+            case "Ordenamiento Mezcla Natural":
+                resultxt.setText("ordenao por mezcla natural " + Arrays.toString(mezclaNatural(datosint)));
+                tminus.setText("!:______algo________:¡");
+                break;
+            default:
+                break;
+        }
+        System.out.println(ordenamientoop.getSelectedItem().toString());
+
+        
         }//GEN-LAST:event_ordenarbuttontextMouseClicked
 
     private void usertxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usertxtKeyTyped
@@ -582,6 +639,227 @@ public class Login extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_usertxtKeyTyped
+    //Funcion que recibe un arreglo de enteros y lo devuelve ordenado de menor a mayor por el metodo de burbuja
+    public int [] burbuja(int[] arr) {
+            int n = arr.length;
+            for (int i = 0; i < n - 1; i++) {
+                for (int j = 0; j < n - i - 1; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        // swap temp and arr[i]
+                        int temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+                }
+            }
+            return arr;
+        }
+    //Funcion que recibe un arreglo de enteros y lo devuelve ordenado de menor a mayor por el metodo de insercion
+    public int [] insercion(int [] arreglo){
+        int auxiliar;
+        int [] arregloOrdenado;
+        for(int i = 1; i < arreglo.length; i++){
+            for(int j = i;j > 0;j--){
+                if(arreglo[j] < arreglo[j-1]){
+                    auxiliar = arreglo[j];
+                    arreglo[j] = arreglo[j-1];
+                    arreglo[j-1] = auxiliar;
+                }
+            }
+        }
+        arregloOrdenado = arreglo;
+        return arregloOrdenado;
+    }
+    //Funcion que recibe un arreglo de enteros y lo devuelve ordenado de menor a mayor por el metodo de seleccion
+    public int [] seleccion(int [] arreglo){
+        int auxiliar;
+        int [] arregloOrdenado;
+        for(int i = 0; i < arreglo.length-1; i++){
+            for(int j = i+1;j < arreglo.length;j++){
+                if(arreglo[i] > arreglo[j]){
+                    auxiliar = arreglo[i];
+                    arreglo[i] = arreglo[j];
+                    arreglo[j] = auxiliar;
+                }
+            }
+        }
+        arregloOrdenado = arreglo;
+        return arregloOrdenado;
+    }
+    //Funcion que recibe un arreglo de enteros y lo devuelve ordenado de menor a mayor por el metodo de heap sort
+    public void heapify(int [] arreglo, int n, int i){
+        int mayor = i;
+        int izquierda = 2*i+1;
+        int derecha = 2*i+2;
+        if(izquierda < n && arreglo[izquierda] > arreglo[mayor]){
+            mayor = izquierda;
+        }
+        if(derecha < n && arreglo[derecha] > arreglo[mayor]){
+            mayor = derecha;
+        }
+        if(mayor != i){
+            int auxiliar = arreglo[i];
+            arreglo[i] = arreglo[mayor];
+            arreglo[mayor] = auxiliar;
+            heapify(arreglo,n,mayor);
+        }
+    }
+    public int [] heapSort(int [] arreglo){
+        int [] arregloOrdenado;
+        int n = arreglo.length;
+        for(int i = n/2-1; i >= 0; i--){
+            heapify(arreglo,n,i);
+        }
+        for(int i = n-1; i >= 0; i--){
+            int auxiliar = arreglo[0];
+            arreglo[0] = arreglo[i];
+            arreglo[i] = auxiliar;
+            heapify(arreglo,i,0);
+        }
+        arregloOrdenado = arreglo;
+        return arregloOrdenado;
+    }
+    //Funcion que recibe un arreglo de enteros y lo devuelve ordenado de menor a mayor por el metodo de quick sort
+    public static void quickSort(int[] array, int low, int high) {
+        if (low < high) {
+            int pivotIndex = partition(array, low, high);
+
+            quickSort(array, low, pivotIndex - 1);
+            quickSort(array, pivotIndex + 1, high);
+        }
+    }
+    public static int partition(int[] array, int low, int high) {
+        int pivot = array[high];
+        int i = low - 1;
+
+        for (int j = low; j < high; j++) {
+            if (array[j] < pivot) {
+                i++;
+                swap(array, i, j);
+            }
+        }
+
+        swap(array, i + 1, high);
+
+        return i + 1;
+    }
+    public static void swap(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+        //Funcion que recibe un arreglo de enteros y lo devuelve ordenado de menor a mayor por el metodo de shell sort
+    public int [] shellSort(int [] arreglo){
+        int [] arregloOrdenado;
+        int n = arreglo.length;
+        for(int intervalo = n/2; intervalo > 0; intervalo /= 2){
+            for(int i = intervalo; i < n; i++){
+                int auxiliar = arreglo[i];
+                int j;
+                for(j = i; j >= intervalo && arreglo[j-intervalo] > auxiliar; j -= intervalo){
+                    arreglo[j] = arreglo[j-intervalo];
+                }
+                arreglo[j] = auxiliar;
+            }
+        }
+        arregloOrdenado = arreglo;
+        return arregloOrdenado;
+    }
+    //Funcion que recibe un arreglo de enteros y lo devuelve ordenado de menor a mayor por el metodo de radix sort
+    public int [] radixSort(int [] arreglo){
+        int [] arregloOrdenado;
+        int max = getMax(arreglo);
+        for(int exp = 1; max/exp > 0; exp *= 10){
+            countSort(arreglo,exp);
+        }
+        arregloOrdenado = arreglo;
+        return arregloOrdenado;
+    }
+    public int getMax(int [] arreglo){
+        int max = arreglo[0];
+        for(int i = 1; i < arreglo.length; i++){
+            if(arreglo[i] > max){
+                max = arreglo[i];
+            }
+        }
+        return max;
+    }
+    public void countSort(int [] arreglo, int exp){
+        int n = arreglo.length;
+        int [] output = new int[n];
+        int [] count = new int[10];
+        for(int i = 0; i < n; i++){
+            count[(arreglo[i]/exp)%10]++;
+        }
+        for(int i = 1; i < 10; i++){
+            count[i] += count[i-1];
+        }
+        for(int i = n-1; i >= 0; i--){
+            output[count[(arreglo[i]/exp)%10]-1] = arreglo[i];
+            count[(arreglo[i]/exp)%10]--;
+        }
+        for(int i = 0; i < n; i++){
+            arreglo[i] = output[i];
+        }
+    }
+    //Funcion que recibe un arreglo de enteros y lo devuelve ordenado de menor a mayor por el metodo de mezcla natural
+    public int [] mezclaNatural(int[] arr) {
+        int n = arr.length;
+        int[] temp = new int[n];
+        boolean sorted = false;
+
+        while (!sorted) {
+            sorted = true;
+            int start = 0;
+
+            while (start < n - 1) {
+                int mid = findMid(arr, start);
+                merge(arr, temp, start, mid);
+                start = mid + 1;
+                if (start < n && arr[start - 1] > arr[start]) {
+                    sorted = false;
+                }
+            }
+        }
+        return arr;
+    }
+
+    private static int findMid(int[] arr, int start) {
+        int n = arr.length;
+        int mid = start + 1;
+
+        while (mid < n && arr[mid - 1] <= arr[mid]) {
+            mid++;
+        }
+        return mid - 1;
+    }
+
+    private static void merge(int[] arr, int[] temp, int start, int mid) {
+        int i = start;
+        int j = mid + 1;
+        int k = start;
+
+        while (i <= mid && j < arr.length) {
+            if (arr[i] <= arr[j]) {
+                temp[k++] = arr[i++];
+            } else {
+                temp[k++] = arr[j++];
+            }
+        }
+
+        while (i <= mid) {
+            temp[k++] = arr[i++];
+        }
+
+        while (j < arr.length) {
+            temp[k++] = arr[j++];
+        }
+
+        System.arraycopy(temp, start, arr, start, k - start);
+    }
+
+
+
 
     /**
      * @param args the command line arguments
