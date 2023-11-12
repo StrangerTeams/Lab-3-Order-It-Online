@@ -346,6 +346,7 @@ public class Login extends javax.swing.JFrame {
         jLabel7.setText("Tiempo de Ejecucion!!");
         background.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(418, 450, 250, 30));
 
+        resultxt.setEditable(false);
         resultxt.setBackground(new java.awt.Color(255, 255, 255));
         resultxt.setFont(new java.awt.Font("Play", 0, 12)); // NOI18N
         resultxt.setForeground(new java.awt.Color(255, 255, 255));
@@ -451,53 +452,74 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_resultxtActionPerformed
 
     private void ordenarbuttontextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ordenarbuttontextMouseClicked
-        if (usertxt.getText().matches("[a-zA-Z]+") || usertxt.getText().matches(",")) {
-            usertxt.setText("");
-            advert.setVisible(true);
-        } else {
-            advert.setVisible(false);
-           
-        }
-        //valida que el campo de texto no posea mas de 2 comas
-        if (usertxt.getText().length() > 0) {
-            char c = usertxt.getText().charAt(usertxt.getText().length() - 1);
-            if (c == ',' && usertxt.getText().charAt(usertxt.getText().length() - 2) == ',') {
-                usertxt.setText(usertxt.getText().substring(0, usertxt.getText().length() - 1));
-            }
-        }
-        //valida que el campo de texto no posea una coma al final
-        if (usertxt.getText().length() > 0) {
-            char c = usertxt.getText().charAt(usertxt.getText().length() - 1);
-            if (c == ',') {
-                usertxt.setText(usertxt.getText().substring(0, usertxt.getText().length() - 1));
-            }
-        }
-        //valida que el campo de texto no posea una coma al inicio
-        if (usertxt.getText().length() > 0) {
-            char c = usertxt.getText().charAt(0);
-            if (c == ',') {
-                usertxt.setText(usertxt.getText().substring(1, usertxt.getText().length()));
-            }
-        }
-        //valida que el campo de texto no posea letras
-        if (usertxt.getText().length() > 0) {
-            char c = usertxt.getText().charAt(usertxt.getText().length() - 1);
-            if (c == 'a' || c == 'b' || c == 'c' || c == 'd' || c == 'e'
-                    || c == 'f' || c == 'g' || c == 'h' || c == 'i' || c == 'j'
-                    || c == 'k' || c == 'l' || c == 'm' || c == 'n' || c == 'ñ'
-                    || c == 'o' || c == 'p' || c == 'q' || c == 'r' || c == 's'
-                    || c == 't' || c == 'u' || c == 'v' || c == 'w' || c == 'x'
-                    || c == 'y' || c == 'z' || c == 'A' || c == 'B' || c == 'C'
-                    || c == 'D' || c == 'E' || c == 'F' || c == 'G' || c == 'H'
-                    || c == 'I' || c == 'J' || c == 'K' || c == 'L' || c == 'M'
-                    || c == 'N' || c == 'Ñ' || c == 'O' || c == 'P' || c == 'Q'
-                    || c == 'R' || c == 'S' || c == 'T' || c == 'U' || c == 'V'
-                    || c == 'W' || c == 'X' || c == 'Y' || c == 'Z') {
-                usertxt.setText(usertxt.getText().substring(0, usertxt.getText().length() - 1));
-            }
-        }
+        String validao=usertxt.getText();
 
-    }//GEN-LAST:event_ordenarbuttontextMouseClicked
+        for (int i = 0; i < validao.length(); i++) {
+            String dato= String.valueOf(validao.charAt(i));
+            if (dato.matches("[a-zA-Z]+")) {
+                //elimina la letra del campo de texto
+                usertxt.setText(usertxt.getText().replaceAll(dato, ""));
+            }
+        }
+        
+        
+        
+        do {
+            //encuentra una letra en el campo de texto y la elimina
+            if(usertxt.getText().matches("[a-zA-Z]+")){
+                usertxt.setText(usertxt.getText().replaceAll("[a-zA-Z]+", ""));
+            }
+            //entro
+
+            if (usertxt.getText().matches("[a-zA-Z]+") || usertxt.getText().matches(",")) {
+                usertxt.setText("");
+                advert.setVisible(true);
+            } else {
+                advert.setVisible(false);
+
+            }
+            //valida que el campo de texto no posea mas de 2 comas
+            if (usertxt.getText().length() > 0) {
+                char c = usertxt.getText().charAt(usertxt.getText().length() - 1);
+                if (c == ',' && usertxt.getText().charAt(usertxt.getText().length() - 2) == ',') {
+                    usertxt.setText(usertxt.getText().substring(0, usertxt.getText().length() - 1));
+                }
+            }
+            //valida que el campo de texto no posea una coma al final
+            if (usertxt.getText().length() > 0) {
+                char c = usertxt.getText().charAt(usertxt.getText().length() - 1);
+                if (c == ',') {
+                    usertxt.setText(usertxt.getText().substring(0, usertxt.getText().length() - 1));
+                }
+            }
+            //valida que el campo de texto no posea una coma al inicio
+            if (usertxt.getText().length() > 0) {
+                char c = usertxt.getText().charAt(0);
+                if (c == ',') {
+                    usertxt.setText(usertxt.getText().substring(1, usertxt.getText().length()));
+                }
+            }
+            //valida que el campo de texto no posea letras
+            if (usertxt.getText().length() > 0) {
+                char c = usertxt.getText().charAt(usertxt.getText().length() - 1);
+                if (c == 'a' || c == 'b' || c == 'c' || c == 'd' || c == 'e'
+                        || c == 'f' || c == 'g' || c == 'h' || c == 'i' || c == 'j'
+                        || c == 'k' || c == 'l' || c == 'm' || c == 'n' || c == 'ñ'
+                        || c == 'o' || c == 'p' || c == 'q' || c == 'r' || c == 's'
+                        || c == 't' || c == 'u' || c == 'v' || c == 'w' || c == 'x'
+                        || c == 'y' || c == 'z' || c == 'A' || c == 'B' || c == 'C'
+                        || c == 'D' || c == 'E' || c == 'F' || c == 'G' || c == 'H'
+                        || c == 'I' || c == 'J' || c == 'K' || c == 'L' || c == 'M'
+                        || c == 'N' || c == 'Ñ' || c == 'O' || c == 'P' || c == 'Q'
+                        || c == 'R' || c == 'S' || c == 'T' || c == 'U' || c == 'V'
+                        || c == 'W' || c == 'X' || c == 'Y' || c == 'Z') {
+                    usertxt.setText(usertxt.getText().substring(0, usertxt.getText().length() - 1));
+                }
+            }
+            //revisa si el texto poseo alguna letra
+        } while (usertxt.getText().matches("[a-zA-Z]+"));
+       //verifica si el campo de texto posee alguna letra
+        }//GEN-LAST:event_ordenarbuttontextMouseClicked
 
     private void usertxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usertxtKeyTyped
         //detecta si algo diferente a un numero o una coma es ingresado
