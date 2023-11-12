@@ -44,14 +44,14 @@ public class Login extends javax.swing.JFrame {
                 if (isPasteAction(e)) {
 
                     // Acciones a realizar cuando se detecta un pegado de texto
-                    if (usertxt.getText().matches("[a-zA-Z]+")||(usertxt.getText().matches("[a-zA-Z]+"))&&usertxt.getText().contains(",")) {
-                       /* try {
+                    if (usertxt.getText().matches("[a-zA-Z]+") || (usertxt.getText().matches("[a-zA-Z]+")) && usertxt.getText().contains(",")) {
+                        /* try {
                             Thread.sleep(1000); // Retraso de 1 segundo (1000 milisegundos)
                         } catch (InterruptedException h) {
                             h.printStackTrace();
                         }*/
                         usertxt.cut();
-                        
+
                         advert.setVisible(true);
                     } else {
                         //advert.setVisible(false);
@@ -94,7 +94,7 @@ public class Login extends javax.swing.JFrame {
         exitbutton = new javax.swing.JPanel();
         exittxt = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        tminus = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         welcomelabel = new javax.swing.JLabel();
         contralabel = new javax.swing.JLabel();
@@ -213,11 +213,11 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setOpaque(true);
         background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 5, 500));
 
-        jLabel3.setFont(new java.awt.Font("Play", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("!:______________:¡");
-        background.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(417, 470, 250, 30));
+        tminus.setFont(new java.awt.Font("Play", 1, 14)); // NOI18N
+        tminus.setForeground(new java.awt.Color(51, 51, 51));
+        tminus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tminus.setText("!:______________:¡");
+        background.add(tminus, new org.netbeans.lib.awtextra.AbsoluteConstraints(417, 470, 250, 30));
 
         jLabel4.setFont(new java.awt.Font("Play", 3, 10)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(204, 204, 204));
@@ -452,21 +452,39 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_resultxtActionPerformed
 
     private void ordenarbuttontextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ordenarbuttontextMouseClicked
-        String validao=usertxt.getText();
+        /*String validao = usertxt.getText();    
+        while(validao.contains(",")){
+                
+            for (int i = 0; i < validao.length(); i++) {
+                String dato = String.valueOf(validao.charAt(i));
+                if (dato.matches("[a-zA-Z]+")) {
+                    //elimina la letra del campo de texto
+                    usertxt.setText(validao.replaceAll(dato, ""));
+                }
 
-        for (int i = 0; i < validao.length(); i++) {
-            String dato= String.valueOf(validao.charAt(i));
-            if (dato.matches("[a-zA-Z]+")) {
-                //elimina la letra del campo de texto
-                usertxt.setText(usertxt.getText().replaceAll(dato, ""));
+                if (dato.matches(",") && String.valueOf(validao.charAt(i + 1)).matches(",")) {
+                    //elimina la letra del campo de texto
+                    String part1 = validao.substring(0, i);
+                    String part2 = validao.substring(i + 2, validao.length());
+                    usertxt.setText(part1 + part2);
+                    System.out.println("dd");
+                    advert.setVisible(true);
+                }else{
+                    advert.setVisible(true);
+                }
             }
-        }
-        
-        
-        
+            
+        }*/
+        usertxt.setText(usertxt.getText().replaceAll(",+", ","));
+        usertxt.setText(usertxt.getText().replaceAll("^,|,$", ""));
+        usertxt.setText(usertxt.getText().replaceAll("[a-zA-Z]", ""));
+
+        // Remove leading and trailing commas
+        //encuentra la posicion de un string en un texto
         do {
+
             //encuentra una letra en el campo de texto y la elimina
-            if(usertxt.getText().matches("[a-zA-Z]+")){
+            if (usertxt.getText().matches("[a-zA-Z]+")) {
                 usertxt.setText(usertxt.getText().replaceAll("[a-zA-Z]+", ""));
             }
             //entro
@@ -516,9 +534,28 @@ public class Login extends javax.swing.JFrame {
                     usertxt.setText(usertxt.getText().substring(0, usertxt.getText().length() - 1));
                 }
             }
+
+            advert.setVisible(false);
             //revisa si el texto poseo alguna letra
         } while (usertxt.getText().matches("[a-zA-Z]+"));
-       //verifica si el campo de texto posee alguna letra
+        //revisa si el texto posee solo comas
+
+        if (usertxt.getText().matches(",+")) {
+            usertxt.setText("");
+
+        } else {
+            if(usertxt.getText().length()==1){
+                if (usertxt.getText().charAt(0) == ',') {
+                    usertxt.setText("");
+                }
+            }
+            advert.setVisible(false);
+
+        }
+
+        System.out.println("todo bien");
+        resultxt.setText("joa por fin "+usertxt.getText());
+        tminus.setText("!:______algo________:¡");
         }//GEN-LAST:event_ordenarbuttontextMouseClicked
 
     private void usertxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usertxtKeyTyped
@@ -528,7 +565,7 @@ public class Login extends javax.swing.JFrame {
             advert.setVisible(true);
         } else {
             advert.setVisible(false);
-           
+
         }
 
         if (usertxt.getText().length() > 0) {
@@ -601,7 +638,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -616,6 +652,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel ordenarbutton;
     private javax.swing.JLabel ordenarbuttontext;
     private javax.swing.JTextField resultxt;
+    private javax.swing.JLabel tminus;
     private javax.swing.JTextField usertxt;
     private javax.swing.JLabel welcomelabel;
     // End of variables declaration//GEN-END:variables
