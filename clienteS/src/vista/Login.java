@@ -1,5 +1,6 @@
-package com.funcionaldisplay;
+package vista;
 
+import controlador.Controlador;
 import java.awt.Color;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -12,7 +13,7 @@ import java.net.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-public class Login extends javax.swing.JFrame {
+public class Login extends javax.swing.JFrame implements IVista{
     final String HOST = "127.0.0.1";
     final int PUERTO = 5000;
     int xmouse, ymouse;
@@ -888,6 +889,8 @@ public class Login extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -926,4 +929,34 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField usertxt;
     private javax.swing.JLabel welcomelabel;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void activeEnviar() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void desactiveEnviar() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void setControl(Controlador control) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void addMensaje(String mensaje) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void reset() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void isVisible(boolean visible) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

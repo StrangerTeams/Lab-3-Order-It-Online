@@ -1,4 +1,4 @@
-package servidorsocket;
+package Clientesocket;
 
 import controlador.Controlador;
 import java.io.*;
@@ -9,7 +9,7 @@ import modelo.Modelo;
 import vista.IVista;
 import vista.Vista;
 
-public class ServidorSocket {
+public class ClienteSocket {
     public static void main(String[] args) {
         /*final int PUERTO = 5000;
 
