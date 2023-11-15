@@ -1,7 +1,7 @@
 package controlador;
 
 import modelo.Modelo;
-import vista.IVista;
+import com.funcionaldisplay.IVista;
 
 public class Controlador {
     Modelo modelo;

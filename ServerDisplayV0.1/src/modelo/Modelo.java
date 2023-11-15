@@ -61,7 +61,7 @@ public class Modelo extends Thread {
     public void run(){
         while(true){
             String mensaje = recibirMensaje();
-            control.addMensaje("el servidor dice: "+ mensaje);
+            control.addMensaje(mensaje);
         }
     }
     

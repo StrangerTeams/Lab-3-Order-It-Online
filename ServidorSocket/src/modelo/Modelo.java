@@ -60,7 +60,8 @@ public class Modelo extends Thread {
     public String recibirMensaje(){
         try {
             String mensaje = input.readLine();
-            if (!mensaje.matches("[a-zA-Z]")){
+            //if (!mensaje.matches("[a-zA-Z]")){
+            if (!mensaje.contains("Ordenamiento")){
                 String[] datos = mensaje.split(",");
                 int[] datosint = new int[datos.length];
                 for (int i = 0; i < datos.length; i++) {
@@ -69,10 +70,16 @@ public class Modelo extends Thread {
                 if (ordenamiento == 1){
                     ordenamientos.ordenamientoBurbuja(datosint);
                 }
+                String respuesta="";
+                for (int i = 0; i < datosint.length; i++) {
+                    respuesta = respuesta + "," + datosint[i];
+                }
+                enviarMensaje(respuesta);
+                return respuesta;
             } else {
                 ordenamiento = escoger(mensaje);
+                return mensaje;
             }
-            return mensaje;
         } catch (IOException ex) {
             Logger.getLogger(Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -80,11 +87,11 @@ public class Modelo extends Thread {
     }
     
     public int escoger(String mensaje){
-        if (mensaje.equalsIgnoreCase("burbuja")){
+        if (mensaje.equalsIgnoreCase("Ordenamiento Burbuja")){
             return 1;
-        } else if (mensaje.equalsIgnoreCase("insercion")){
+        } else if (mensaje.equalsIgnoreCase("Ordenamiento Insercion")){
             return 2;
-        } else if (mensaje.equalsIgnoreCase("seleccion")){
+        } else if (mensaje.equalsIgnoreCase("Ordenamiento Seleccion")){
             return 3;
         }
         return 0;
