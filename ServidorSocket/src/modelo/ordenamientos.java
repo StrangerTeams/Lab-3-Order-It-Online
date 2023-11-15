@@ -36,7 +36,7 @@ public class ordenamientos {
     
     
     //Algoritmo de ordenamiento por Seleccion
-    public int [] Seleccion(int [] arreglo){
+    public static int [] seleccion(int [] arreglo){
         int auxiliar;
         int [] arregloOrdenado;
         for(int i = 0; i < arreglo.length-1; i++){
@@ -53,7 +53,7 @@ public class ordenamientos {
     }
     
     //Algoritmo de ordenamiento por Heap sort
-    public void heapify(int [] arreglo, int n, int i){
+    public static void heapify(int [] arreglo, int n, int i){
         int mayor = i;
         int izquierda = 2*i+1;
         int derecha = 2*i+2;
@@ -71,7 +71,7 @@ public class ordenamientos {
         }
     }
     
-    private int [] heapSort(int [] arreglo){
+    public static int [] heapSort(int [] arreglo){
         int [] arregloOrdenado;
         int n = arreglo.length;
         for(int i = n/2-1; i >= 0; i--){
@@ -121,7 +121,7 @@ public class ordenamientos {
         
 
     //Algoritmo de ordenamiento por Radix-Sort
-    public int [] RadixSort(int [] arreglo){
+    public static int [] radixSort(int [] arreglo){
         int [] arregloOrdenado;
         int max = getMax(arreglo);
         for(int exp = 1; max/exp > 0; exp *= 10){
@@ -130,7 +130,7 @@ public class ordenamientos {
         arregloOrdenado = arreglo;
         return arregloOrdenado;
     }
-    private int getMax(int [] arreglo){
+    private static int getMax(int [] arreglo){
         int max = arreglo[0];
         for(int i = 1; i < arreglo.length; i++){
             if(arreglo[i] > max){
@@ -139,7 +139,7 @@ public class ordenamientos {
         }
         return max;
     }
-    private void countSort(int [] arreglo, int exp){
+    private static void countSort(int [] arreglo, int exp){
         int n = arreglo.length;
         int [] output = new int[n];
         int [] count = new int[10];
@@ -159,7 +159,7 @@ public class ordenamientos {
     }
     
     //Algoritmo de ordenamiento por Mezcla Natural
-    public int [] mezclaNatural(int[] arr) {
+    public static int [] mezclaNatural(int[] arr) {
         int n = arr.length;
         int[] temp = new int[n];
         boolean sorted = false;

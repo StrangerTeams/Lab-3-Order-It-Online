@@ -20,8 +20,8 @@ public class Login extends javax.swing.JFrame implements IVista {
         usertxt.setText("");
 
         //usertxt.setText("");
-        usertxt.setBackground(new java.awt.Color(0, 0, 0, 1));
-        resultxt.setBackground(new java.awt.Color(0, 0, 0, 1));
+        usertxt.setBackground(new java.awt.Color(7, 146,146));
+        resultxt.setBackground(new java.awt.Color(7, 146, 146));
         advert.setVisible(false);
         ordenarbutton.requestFocusInWindow();
         ordenamientoop.setUI(Propiedades.createUI(rootPane));
@@ -148,7 +148,7 @@ public class Login extends javax.swing.JFrame implements IVista {
         exittxt.setForeground(new java.awt.Color(157, 157, 157));
         exittxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         exittxt.setText("X");
-        exittxt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        exittxt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         exittxt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 exittxtMouseClicked(evt);
@@ -192,7 +192,6 @@ public class Login extends javax.swing.JFrame implements IVista {
         background.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 20));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setOpaque(true);
         background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 5, 500));
 
@@ -229,7 +228,7 @@ public class Login extends javax.swing.JFrame implements IVista {
         background.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 400, 110, 30));
 
         ordenarbutton.setBackground(new java.awt.Color(7, 146, 146));
-        ordenarbutton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ordenarbutton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ordenarbutton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 ordenarbuttonMouseExited(evt);
@@ -270,9 +269,8 @@ public class Login extends javax.swing.JFrame implements IVista {
 
         background.add(ordenarbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 375, 120, 30));
 
-        usertxt.setBackground(new java.awt.Color(255, 255, 255));
         usertxt.setFont(new java.awt.Font("Play", 0, 12)); // NOI18N
-        usertxt.setForeground(new java.awt.Color(255, 255, 255));
+        usertxt.setForeground(new java.awt.Color(0, 0, 0));
         usertxt.setBorder(null);
         usertxt.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         usertxt.setSelectedTextColor(new java.awt.Color(51, 51, 51));
@@ -295,7 +293,7 @@ public class Login extends javax.swing.JFrame implements IVista {
         ordenamientoop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ordenamiento Burbuja", "Ordenamiento Por Insercion", "Ordenamiento Por Seleccion", "Ordenamiento Heap Sort", "Ordenamiento Quick Sort", "Ordenamiento Shell Sort", "Ordenamiento Radix Sort", "Ordenamiento Mezcla Natural" }));
         ordenamientoop.setAutoscrolls(true);
         ordenamientoop.setBorder(null);
-        ordenamientoop.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ordenamientoop.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ordenamientoop.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         ordenamientoop.setOpaque(true);
         ordenamientoop.addActionListener(new java.awt.event.ActionListener() {
@@ -332,7 +330,7 @@ public class Login extends javax.swing.JFrame implements IVista {
         resultxt.setEditable(false);
         resultxt.setBackground(new java.awt.Color(255, 255, 255));
         resultxt.setFont(new java.awt.Font("Play", 0, 12)); // NOI18N
-        resultxt.setForeground(new java.awt.Color(255, 255, 255));
+        resultxt.setForeground(new java.awt.Color(0, 0, 0));
         resultxt.setBorder(null);
         resultxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
